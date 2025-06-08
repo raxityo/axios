@@ -962,6 +962,10 @@ function toFormData$1(obj, formData, options) {
       return value.toISOString();
     }
 
+    if (utils$1.isBoolean(value)) {
+      return value.toString();
+    }
+
     if (!useBlob && utils$1.isBlob(value)) {
       throw new AxiosError$1('Blob is not supported. Use a Buffer instead.');
     }
@@ -2878,7 +2882,7 @@ const fetchAdapter = isFetchSupported && (async (config) => {
       credentials: isCredentialsSupported ? withCredentials : undefined
     });
 
-    let response = await fetch(request);
+    let response = await fetch(request, fetchOptions);
 
     const isStreamResponse = supportsResponseStream && (responseType === 'stream' || responseType === 'response');
 

@@ -1586,6 +1586,9 @@
       if (utils$1.isDate(value)) {
         return value.toISOString();
       }
+      if (utils$1.isBoolean(value)) {
+        return value.toString();
+      }
       if (!useBlob && utils$1.isBlob(value)) {
         throw new AxiosError('Blob is not supported. Use a Buffer instead.');
       }
@@ -3498,7 +3501,7 @@
               credentials: isCredentialsSupported ? withCredentials : undefined
             }));
             _context4.next = 20;
-            return fetch(request);
+            return fetch(request, fetchOptions);
           case 20:
             response = _context4.sent;
             isStreamResponse = supportsResponseStream && (responseType === 'stream' || responseType === 'response');
